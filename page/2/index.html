@@ -241,6 +241,301 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2022/03/02/%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/02/%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90/" itemprop="url">1226.哲学家进餐</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-03-02T00:00:00+08:00">
+                2022-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>读书人的世界真是麻烦。。</p>
+<p>5个人同时吃饭的情况下，都先拿左边的筷子，那么5根筷子全部都被拿走，再拿右边筷子时陷入死锁</p>
+<p>5个人，只需要允许最多5 - 1 个人同时吃饭。每个人都拿左边筷子，就会有一根筷子多余，再拿右边的筷子，只会有一个人拿到，吃饭后，放下就可以让其他人也吃。</p>
+<p>那么那么。。只需要给4个信号量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DiningPhilosophers</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DiningPhilosophers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    Semaphore semaphore = <span class="keyword">new</span> <span class="built_in">Semaphore</span>(<span class="number">1</span>); <span class="comment">// 1 2 3 4 信号量均可以，只要小于5</span></span><br><span class="line">    <span class="comment">// call the run() method of any runnable to execute its code</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wantsToEat</span><span class="params">(<span class="keyword">int</span> philosopher,</span></span></span><br><span class="line"><span class="params"><span class="function">                           Runnable pickLeftFork,</span></span></span><br><span class="line"><span class="params"><span class="function">                           Runnable pickRightFork,</span></span></span><br><span class="line"><span class="params"><span class="function">                           Runnable eat,</span></span></span><br><span class="line"><span class="params"><span class="function">                           Runnable putLeftFork,</span></span></span><br><span class="line"><span class="params"><span class="function">                           Runnable putRightFork)</span> throws InterruptedException </span>&#123;</span><br><span class="line">                               </span><br><span class="line">        semaphore.<span class="built_in">acquire</span>(<span class="number">1</span>); </span><br><span class="line">        pickLeftFork.<span class="built_in">run</span>();</span><br><span class="line">        pickRightFork.<span class="built_in">run</span>();</span><br><span class="line">        eat.<span class="built_in">run</span>();</span><br><span class="line">        putLeftFork.<span class="built_in">run</span>();</span><br><span class="line">        putRightFork.<span class="built_in">run</span>();</span><br><span class="line">        semaphore.<span class="built_in">release</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2022/03/02/%E5%A4%A9%E9%99%85%E7%BA%BF%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/02/%E5%A4%A9%E9%99%85%E7%BA%BF%E9%97%AE%E9%A2%98/" itemprop="url">218.天际线问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-03-02T00:00:00+08:00">
+                2022-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-skyline-problem/">https://leetcode-cn.com/problems/the-skyline-problem/</a></p>
+<h3 id="线段扫描"><a href="#线段扫描" class="headerlink" title="线段扫描"></a>线段扫描</h3><ul>
+<li>从左向右<code>顺序遍历</code>长方形的<code>边界</code></li>
+</ul>
+<ol>
+<li>遍历左边界时直接入堆，遍历右边界时,弹出其对应的左边界</li>
+<li>如果堆顶元素（堆中最大值）发生变化，则产生关键点</li>
+<li>保存关键点，维护最大值</li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">getSkyline</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; buildings) &#123;</span><br><span class="line">        <span class="comment">//线段扫描</span></span><br><span class="line">        multiset&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; bounaries; <span class="comment">// 坐标。高度</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; b: buildings) &#123;</span><br><span class="line">            bounaries.<span class="built_in">insert</span>(&#123;b[<span class="number">0</span>], -b[<span class="number">2</span>]&#125;); <span class="comment">//正负区别左右边界</span></span><br><span class="line">            bounaries.<span class="built_in">insert</span>(&#123;b[<span class="number">1</span>], b[<span class="number">2</span>]&#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        multiset&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        q.<span class="built_in">insert</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> preMax = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="comment">//按横坐标顺序遍历所有边界</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; t: bounaries) &#123;</span><br><span class="line">            <span class="keyword">if</span> (t.second &lt; <span class="number">0</span>) &#123; <span class="comment">//左边界 入堆</span></span><br><span class="line">                q.<span class="built_in">insert</span>(-t.second);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                q.<span class="built_in">erase</span>(q.<span class="built_in">find</span>(t.second)); <span class="comment">//右边界 出堆</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> curMax = *q.<span class="built_in">rbegin</span>();  <span class="comment">//自动排序，最右的元素为当前最大值</span></span><br><span class="line">            <span class="keyword">if</span> (curMax != preMax) &#123; <span class="comment">// 堆顶的最大值不同产生天际线</span></span><br><span class="line">                res.<span class="built_in">push_back</span>(&#123;t.first, curMax&#125;); </span><br><span class="line">                preMax = curMax;</span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2022/03/02/%E6%9C%80%E5%B0%8F%E5%8C%BA%E9%97%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1169,149 +1464,6 @@ return 0;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/17/AcWing%20830%E5%8D%95%E8%B0%83%E6%A0%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/10/17/AcWing%20830%E5%8D%95%E8%B0%83%E6%A0%88/" itemprop="url">AcWing 830.单调栈</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-17T00:00:00+08:00">
-                2021-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/830.%E5%8D%95%E8%B0%83%E6%A0%88.jpg" alt="1"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100000</span>;</span><br><span class="line"><span class="keyword">int</span> stk[N],m[N],p,n;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )  cin &gt;&gt; m[i];</span><br><span class="line">    </span><br><span class="line">    stk[p] = <span class="number">-1</span>;p++; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) &#123;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="number">1</span> &amp;&amp; m[i] &lt;= stk[p<span class="number">-1</span>]) p--;</span><br><span class="line">        cout &lt;&lt; stk[p<span class="number">-1</span>] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        stk[p++] = m[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/17/AcWing%20829.%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1454,7 +1606,7 @@ return 0;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/15/%E5%89%91%E6%8C%87%20Offer%20II%20069.%20%E5%B1%B1%E5%B3%B0%E6%95%B0%E7%BB%84%E7%9A%84%E9%A1%B6%E9%83%A8/">
+    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/17/AcWing%20830%E5%8D%95%E8%B0%83%E6%A0%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1473,7 +1625,7 @@ return 0;
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/10/15/%E5%89%91%E6%8C%87%20Offer%20II%20069.%20%E5%B1%B1%E5%B3%B0%E6%95%B0%E7%BB%84%E7%9A%84%E9%A1%B6%E9%83%A8/" itemprop="url">剑指 Offer II 069. 山峰数组的顶部</a></h1>
+                <a class="post-title-link" href="/2021/10/17/AcWing%20830%E5%8D%95%E8%B0%83%E6%A0%88/" itemprop="url">AcWing 830.单调栈</a></h1>
         
 
         <div class="post-meta">
@@ -1485,8 +1637,8 @@ return 0;
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-15T00:00:00+08:00">
-                2021-10-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-17T00:00:00+08:00">
+                2021-10-17
               </time>
             
 
@@ -1547,174 +1699,8 @@ return 0;
       
         
           
-            <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/B1IidL/">https://leetcode-cn.com/problems/B1IidL/</a></p>
-<h4 id="正向遍历"><a href="#正向遍历" class="headerlink" title="正向遍历"></a>正向遍历</h4><p>刚开始数组递增，当数组递减时，当前坐标即为山峰顶部</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] &gt; arr[i+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h4><blockquote>
-<p>很容易想到时间复杂度 O(n) 的解决方案，你可以设计一个 O(log(n)) 的解决方案吗？</p>
-</blockquote>
-<p><strong>log(n) 二分</strong></p>
-<p><code>[l, r]</code> 表示山峰所处的区间</p>
-<p>令<code>mid = (l+r)/2 </code> </p>
-<ul>
-<li><p>如果mid处于峰的左边， 就将 <code>l</code> 移动到<code>mid+1</code>处</p>
-</li>
-<li><p>如果mid处于峰的右边， 就将 <code>r</code> 移动到<code>mid</code>处</p>
-</li>
-</ul>
-<p>每次查找减少一般的区间</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span> r = arr.<span class="built_in">size</span>();</span><br><span class="line"><span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (arr[mid] &lt; arr[mid+<span class="number">1</span>]) &#123;</span><br><span class="line">        l = mid+<span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        r = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> r;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/12/AcWing%20835.Trie%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%9F%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/10/12/AcWing%20835.Trie%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%9F%E8%AE%A1/" itemprop="url">AcWing 835.Trie字符串统计</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-12T00:00:00+08:00">
-                2021-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/835.Trie%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%9F%E8%AE%A13.jpg" alt="3"></p>
-<hr>
-<p>高效 <strong>存储</strong>和<strong>查找</strong> 字符串</p>
-<p><img src="/images/835.Trie%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%9F%E8%AE%A1.jpg" alt="1"></p>
-<p>利用重复的字符</p>
-<hr>
-<p><img src="/images/835.Trie%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%9F%E8%AE%A12.jpg" alt="2"></p>
-<hr>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> son[N][<span class="number">26</span>];  <span class="comment">// 第一维表示当前的节点位置  第二维表示字符的下标：26个英文字母，也就相当于分支    整体表示当前的子节点</span></span><br><span class="line"><span class="keyword">int</span> cnt[N]; <span class="comment">// </span></span><br><span class="line"><span class="keyword">int</span> idx;  <span class="comment">// 确定当前到达哪个节点</span></span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> *str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p = <span class="number">0</span>; <span class="comment">//子节点</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; str[i]; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> u =  str[i] - <span class="string">&#x27;a&#x27;</span>; <span class="comment">//获取当前字符</span></span><br><span class="line">        <span class="keyword">if</span> (!son[p][u]) son[p][u] = ++ idx; <span class="comment">//节点不存在，创造节点</span></span><br><span class="line">        p = son[p][u]; <span class="comment">//p指向下一个节点</span></span><br><span class="line">    &#125;</span><br><span class="line">    cnt[p]++; <span class="comment">// 字符串个数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">char</span> *str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; str[i]; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> u = str[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (!son[p][u]) &#123; </span><br><span class="line">            cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p = son[p][u];</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; cnt[p] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> n;</span><br><span class="line">     cin &gt;&gt; n;</span><br><span class="line">     <span class="keyword">while</span>(n--) &#123;</span><br><span class="line">         <span class="keyword">char</span> op[<span class="number">2</span>];</span><br><span class="line">         </span><br><span class="line">         <span class="built_in">scanf</span>(<span class="string">&quot;%s%s&quot;</span>, &amp;op, &amp;s);</span><br><span class="line">         <span class="keyword">if</span> (*op == <span class="string">&#x27;I&#x27;</span>) <span class="built_in">insert</span>(s);</span><br><span class="line">         <span class="keyword">else</span> <span class="built_in">query</span>(s);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p><img src="/images/830.%E5%8D%95%E8%B0%83%E6%A0%88.jpg" alt="1"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100000</span>;</span><br><span class="line"><span class="keyword">int</span> stk[N],m[N],p,n;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )  cin &gt;&gt; m[i];</span><br><span class="line">    </span><br><span class="line">    stk[p] = <span class="number">-1</span>;p++; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) &#123;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="number">1</span> &amp;&amp; m[i] &lt;= stk[p<span class="number">-1</span>]) p--;</span><br><span class="line">        cout &lt;&lt; stk[p<span class="number">-1</span>] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        stk[p++] = m[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1754,7 +1740,7 @@ return 0;
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1800,7 +1786,7 @@ return 0;
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
