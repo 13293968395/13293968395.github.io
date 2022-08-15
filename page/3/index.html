@@ -1405,6 +1405,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/05/Pytorch%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5.%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/10/05/Pytorch%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5.%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" itemprop="url">pytorch线性模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-05T00:00:00+08:00">
+                2021-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>虽然看了几遍刘洪普老师的视频，但是每次看都有所收获，这次再刷一遍。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Y7411d7Ys">https://www.bilibili.com/video/BV1Y7411d7Ys</a>!!!</p>
+<h4 id="1-监督学习"><a href="#1-监督学习" class="headerlink" title="1.监督学习"></a>1.监督学习</h4><p>根据模型根据<strong>输入值计算出的输出值</strong>与真实值进行比较，并对模型进行调整</p>
+<h4 id="2-数据集"><a href="#2-数据集" class="headerlink" title="2.数据集"></a>2.数据集</h4><p>拿到的数据集分为训练集，测试集</p>
+<p>训练集又可分为训练集 ，开发集</p>
+<p>开发集用于评估模型</p>
+<p>在训练集中误差小，可能为过拟合</p>
+<p>泛化</p>
+<h4 id="3-loss"><a href="#3-loss" class="headerlink" title="3.loss"></a>3.loss</h4><p>如何得到正确的权重，找到一种方法，评估<strong>模型计算出的与真实数据集之间的误差</strong>，即为<strong>loss</strong></p>
+<p>所有的误差<strong>loss</strong>和求平均值为<strong>平均损失</strong></p>
+<p>使平均损失最低，即为最佳权重</p>
+<p><strong>平均平方误差</strong> MSE</p>
+<p><img src="/images/153633.jpg" alt="153633.jpg"></p>
+<h4 id="4-得到正确权重"><a href="#4-得到正确权重" class="headerlink" title="4.得到正确权重"></a>4.得到正确权重</h4><p>穷举 所有的权重<strong>w</strong>使MSE最小的即为最优权重</p>
+<h4 id="5-实现中"><a href="#5-实现中" class="headerlink" title="5.实现中"></a>5.实现中</h4><ul>
+<li>forward模型</li>
+<li>损失：平方差</li>
+<li>可视化！visdom</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/05/Pytorch%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5.%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1531,166 +1691,6 @@
 </ul>
 <p>所以使用一个折中的方法,将若干个数据组成batch，每次用一个batch进行训练，求梯度</p>
 <h4 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h4><p>我们使用tensor进行运算时，无论什么运算，pytorch都会对tensor进行求导，形成计算图，会消耗内存</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/10/05/Pytorch%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5.%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/10/05/Pytorch%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5.%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" itemprop="url">pytorch线性模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-05T00:00:00+08:00">
-                2021-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>虽然看了几遍刘洪普老师的视频，但是每次看都有所收获，这次再刷一遍。</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Y7411d7Ys">https://www.bilibili.com/video/BV1Y7411d7Ys</a>!!!</p>
-<h4 id="1-监督学习"><a href="#1-监督学习" class="headerlink" title="1.监督学习"></a>1.监督学习</h4><p>根据模型根据<strong>输入值计算出的输出值</strong>与真实值进行比较，并对模型进行调整</p>
-<h4 id="2-数据集"><a href="#2-数据集" class="headerlink" title="2.数据集"></a>2.数据集</h4><p>拿到的数据集分为训练集，测试集</p>
-<p>训练集又可分为训练集 ，开发集</p>
-<p>开发集用于评估模型</p>
-<p>在训练集中误差小，可能为过拟合</p>
-<p>泛化</p>
-<h4 id="3-loss"><a href="#3-loss" class="headerlink" title="3.loss"></a>3.loss</h4><p>如何得到正确的权重，找到一种方法，评估<strong>模型计算出的与真实数据集之间的误差</strong>，即为<strong>loss</strong></p>
-<p>所有的误差<strong>loss</strong>和求平均值为<strong>平均损失</strong></p>
-<p>使平均损失最低，即为最佳权重</p>
-<p><strong>平均平方误差</strong> MSE</p>
-<p><img src="/images/153633.jpg" alt="153633.jpg"></p>
-<h4 id="4-得到正确权重"><a href="#4-得到正确权重" class="headerlink" title="4.得到正确权重"></a>4.得到正确权重</h4><p>穷举 所有的权重<strong>w</strong>使MSE最小的即为最优权重</p>
-<h4 id="5-实现中"><a href="#5-实现中" class="headerlink" title="5.实现中"></a>5.实现中</h4><ul>
-<li>forward模型</li>
-<li>损失：平方差</li>
-<li>可视化！visdom</li>
-</ul>
 
           
         
