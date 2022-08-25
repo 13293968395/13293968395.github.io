@@ -241,6 +241,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/09/09/21.%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/09/21.%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/" itemprop="url">21.合并两个有序链表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-09T00:00:00+08:00">
+                2021-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-迭代"><a href="#1-迭代" class="headerlink" title="1.迭代"></a>1.迭代</h2><p>将两个有序链表合并, 对<code>l1</code> <code>l2</code>的对应点比较, 并接入<strong>较小的节点</strong>, 继续比较遍, 直到某一链表为空, 则将剩余数值较大的并入链表尾部</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ListNode* newHead = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">-1</span>);  <span class="comment">//</span></span><br><span class="line">ListNode* prev = newHead;  <span class="comment">// </span></span><br><span class="line"><span class="keyword">while</span> (l1 != <span class="literal">nullptr</span> &amp;&amp; l2 != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (l1-&gt;val &lt;= l2-&gt;val) &#123; <span class="comment">//比较, 并接入较小的节点</span></span><br><span class="line">        prev-&gt;next = l1;</span><br><span class="line">        l1 = l1-&gt;next; <span class="comment">// l1 </span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        prev-&gt;next = l2;</span><br><span class="line">        l2 = l2-&gt;next; <span class="comment">// l1, l2 向后移动, 用于下次比较</span></span><br><span class="line">    &#125;</span><br><span class="line">    prev= prev-next; <span class="comment">//接入点后移, 用于下次接入</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (l1 == <span class="literal">nullptr</span> ) &#123;</span><br><span class="line">    prev-&gt;next = l2;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    prev-&gt;next = l1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> newHead-&gt;next;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-递归"><a href="#2-递归" class="headerlink" title="2.递归"></a>2.递归</h2><p>假设已经有<strong>除头部节点</strong>一部分链表<strong>按题目要求</strong>合并好, 那我们只需要将 头部节点比较然后插入已合并好的链表中即可, </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (l1 == <span class="literal">nullptr</span>)    <span class="keyword">return</span> l2;  <span class="comment">// 如果为空直接返回</span></span><br><span class="line"><span class="keyword">if</span> (l2 == <span class="literal">nullptr</span>)    <span class="keyword">return</span> l1;</span><br><span class="line"><span class="keyword">if</span> (l1-&gt;val &lt; l2-&gt;val) &#123;</span><br><span class="line">    l1-&gt;next = <span class="built_in">mergeTwoLists</span>(l1-&gt;next, l2); <span class="comment">// 将l1直接作为头节点，接入递归算法已经合并好的链表中即可</span></span><br><span class="line">    <span class="keyword">return</span> l1;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    l2-&gt;next = <span class="built_in">mergeTwoLists</span>(l1, l2-&gt;next);</span><br><span class="line">    <span class="keyword">return</span> l2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://23.98.40.186/2021/09/07/198.%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1752,7 +1899,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
